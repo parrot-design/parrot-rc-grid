@@ -1,0 +1,80 @@
+@use "sass:math";
+
+@import '@parrotjs/rc-helper-class/src/index.scss';
+
+@function blockWidth($i){
+    @return math.div(100%, 24)*$i;
+}
+
+$prefixClsRow:#{$global-prefixCls}-row;
+$prefixClsCol:#{$global-prefixCls}-col;
+
+.#{$global-prefixCls}{
+
+    &-row{
+        display: flex; 
+    }
+
+    &-row-align{
+        &-start{
+            align-items: flex-start;
+        }
+        &-center{
+            align-items: center;
+        }
+        &-end{
+            align-items: flex-end;
+        }
+    }
+
+    &-row-justify{
+        &-start{
+            justify-content: flex-start;
+        }
+        &-center{
+            justify-content: center;
+        }
+        &-end{
+            justify-content: flex-end;
+        }
+        &-around{
+            justify-content:space-around;
+        }
+        &-between{
+            justify-content:space-between;
+        }
+    }
+
+    &-row-wrap{
+        flex-wrap: wrap;
+    }
+
+    &-col{
+        position: relative;
+    }
+
+    @for $i from 1 through 24{
+        &-col-span-#{$i}{
+            flex:0 0  blockWidth($i);
+        }
+    }
+
+    @for $i from 1 through 24{
+        &-col-offset-#{$i}{
+            margin-left:  blockWidth($i);
+        }
+    }
+
+    @for $i from 1 through 24{
+        &-col-push-#{$i}{
+            left:  blockWidth($i);
+        }
+    }
+
+    @for $i from 1 through 24{
+        &-col-pull-#{$i}{
+            right:  blockWidth($i);
+        }
+    }
+}
+ 
